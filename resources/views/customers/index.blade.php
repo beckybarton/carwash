@@ -41,7 +41,7 @@
                                     <td class="text-end">{{ number_format($paymentsPerCustomer[$customerName->id],2) }}</td>
                                     <td class="text-end">{{ number_format($payablesPerCustomer[$customerName->id] - $paymentsPerCustomer[$customerName->id],2) }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-warning edit-customer" id="edit-customer" data-target="#editVehicleTypeModal" data-vehicletype="{{ $customerName }}">Edit</button>
+                                        <button class="btn btn-sm btn-warning customer-transactions" id="customer-transactions" data-target="#customertransactionsModal" data-customer="{{ $customerName }}">View</button>
                                         <button class="btn btn-sm btn-warning view-payables" id="view-payables" data-target="#editVehicleTypeModal" data-vehicletype="{{ $customerName }}">Edit</button>
                                     </td>
                                 </tr>
@@ -60,6 +60,7 @@
     @include('vehicle_types.create')
     @include('job_orders.create')
     @include('customers.create')
+    @include('customers.transactions')
 
     @include('layouts.footer')
 </body>

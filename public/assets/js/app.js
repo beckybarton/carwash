@@ -27,7 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
-    
+    $(document).on('click', '.customer-transactions', function() {
+        var customer = $(this).data('customer');
+        // $('.edit-id').val(vehicletype.id);
+        // $('.edit-name').val(vehicletype.name);
+        // $('.edit-amount').val(vehicletype.amount);
+        // $('#editVehicleTypeForm').attr('action', '/vehicle-types/' + vehicletype.id);
+        $('#customertransactionsModal').modal('show');
+        console.log(customer);
+    });
 
 });
 
