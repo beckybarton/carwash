@@ -25,10 +25,16 @@ class JobOrderController extends Controller
             'vehicle_type',
         ])->orderBy('created_at', 'desc')
           ->paginate(10);
-
+        
         $vehicleTypes = VehicleType::all();
         $allcustomers = Customer::all();
-        return view('job_orders.index', compact('vehicleTypes', 'allcustomers'));
+
+        $totalsPerCustomer = [];
+        foreach ($allcustomers as $customer) {
+            $totalsPerCustomer[$customer->id] = JobOrder::getTotalPayable($customer->id);
+        }        
+        
+        return view('job_orders.index', compact('vehicleTypes', 'allcustomers','jobOrders', 'totalsPerCustomer'));
     }
 
     /**

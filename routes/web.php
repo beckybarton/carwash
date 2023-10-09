@@ -7,6 +7,7 @@ use App\Http\Controllers\JobOrderController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +21,11 @@ use App\Http\Controllers\LoginController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard.index');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard.index');
@@ -42,19 +45,19 @@ Route::get('/vehicle-types/{id}', [VehicleTypeController::class, 'show'])->name(
 Route::resource('job-orders', JobOrderController::class)->middleware('auth');
 Route::get('/josearch', [JobOrderController::class, 'filter'])->name('jobOrder.filter');
 Route::get('/joborders/data', [DashboardController::class, 'getJobOrders'])->name('joborders.data');
-Route::post('/approve-jo/{id}', [JobOrderController::class, 'statusupdate'])->name('joborder.statusupdate');
+Route::post('/statusupdate/{id}', [JobOrderController::class, 'statusupdate'])->name('joborder.statusupdate');
 
 
 // CUSTOMERS
 // Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::resource('customers', CustomerController::class)->middleware('auth');
 
-// USER MANAGEMENT
+
 // USER MANAGEMENT
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'registerSave'])->name('register.post');
-// Route::get('/users', [UserController::class, 'index'])->name('users');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// PAYMENT MANAGEMENT
+Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');

@@ -26,6 +26,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th class="text-end">Payables</th>
+                                <th class="text-end">Payments</th>
+                                <th class="text-end">Remaining Due</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -34,8 +37,12 @@
                                 <tr>
                                     <td>{{ $customerName->id }}</td>
                                     <td>{{ $customerName->name }}</td>
+                                    <td class="text-end">{{ number_format($payablesPerCustomer[$customerName->id],2) }}</td>
+                                    <td class="text-end">{{ number_format($paymentsPerCustomer[$customerName->id],2) }}</td>
+                                    <td class="text-end">{{ number_format($payablesPerCustomer[$customerName->id] - $paymentsPerCustomer[$customerName->id],2) }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-warning edit-customer" id="edit-customer" data-target="#editVehicleTypeModal" data-vehicletype="{{ $customerName }}">Edit</button>
+                                        <button class="btn btn-sm btn-warning view-payables" id="view-payables" data-target="#editVehicleTypeModal" data-vehicletype="{{ $customerName }}">Edit</button>
                                     </td>
                                 </tr>
                             @endforeach

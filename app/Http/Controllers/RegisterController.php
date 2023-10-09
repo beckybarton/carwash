@@ -34,6 +34,7 @@ class RegisterController extends Controller
         $user = new User();
         $user->first_name = $validatedData['first_name'];
         $user->last_name = $validatedData['last_name'];
+        $user->username = strtolower($validatedData['first_name'] . $validatedData['last_name']);
         $user->email = $validatedData['email'];
         $user->role = $validatedData['role'];
         $user->password = Hash::make($password);

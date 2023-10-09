@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\VehicleType;
 use App\Models\JobOrder;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -17,12 +18,22 @@ class CustomerController extends Controller
             'vehicle_type',
         ])->orderBy('created_at', 'desc')
           ->paginate(10);
-          
+        
         $vehicleTypes = VehicleType::all();
-        $customerNames = Customer::paginate(10);
         $allcustomers = Customer::all();
-        return view('customers.index', compact('vehicleTypes','customerNames', 'allcustomers'));
-        // dd($customerNames);
+        $customerNames = Customer::paginate(10);
+
+        $payablesPerCustomer = [];
+        foreach ($allcustomers as $customer) {
+            $payablesPerCustomer[$customer->id] = JobOrder::getTotalPayable($customer->id);
+        }      
+        
+        $paymentsPerCustomer = [];
+        foreach ($allcustomers as $customer) {
+            $paymentsPerCustomer[$customer->id] = Payment::getTotalPayment($customer->id);
+        }  
+        
+        return view('customers.index', compact('vehicleTypes', 'allcustomers','jobOrders', 'payablesPerCustomer' ,'customerNames', 'paymentsPerCustomer'));
     }
 
     /**

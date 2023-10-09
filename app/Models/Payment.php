@@ -20,4 +20,9 @@ class Payment extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public static function getTotalPayment($customerId){
+        return self::where('customer_id', $customerId)->sum('amount');
+    }
+
+
 }

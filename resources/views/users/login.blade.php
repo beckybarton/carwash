@@ -9,8 +9,8 @@
         <form action="#" method="POST">
             @csrf
             <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
             </div>
 
             <div class="form-group">

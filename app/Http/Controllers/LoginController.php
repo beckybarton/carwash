@@ -27,12 +27,12 @@ class LoginController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'email' => 'required|email',
+            'username' => 'required',
             'password' => 'required',
         ]);
 
         // Attempt to authenticate the user
-        if (Auth::attempt($request->only('email', 'password'))) {
+        if (Auth::attempt($request->only('username', 'password'))) {
             return redirect()->intended('/dashboard');
             // dd($request);
         }

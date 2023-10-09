@@ -48,17 +48,21 @@
                                     <td>{{ \Carbon\Carbon::parse($jobOrder->time_in)->format('M d, Y') }}</td>
                                     <td>{{ ucwords($jobOrder->status) }}</td>
                                     <td>
-                                        <form action="{{ route('joborder.statusupdate', $jobOrder->id) }}" method="POST">
+                                        <form style="display: inline-block;" action="{{ route('joborder.statusupdate', $jobOrder->id) }}" method="POST">
                                             @csrf
-                                            @if($jobOrder->status === 'pending')
+                                            @if($jobOrder->status === 'pending' && (auth()->user()->role === 'approver' || auth()->user()->role === 'admin'))
                                                 <button type="submit" class="custom-green-btn" name="action" value="approved"><i class="fas fa-check"></i></button>
                                                 <button type="submit" class="custom-red-btn" name="action" value="rejected"><i class="fas fa-times"></i> </button>
                                             @endif
                                             @if($jobOrder->status === "approved")
                                                 <button type="submit" class="custom-green-btn" name="action" value="completed"><i class="fas fa-clipboard-check"></i> </button>
                                             @endif
+                                            
                                         </form>
-                                        <button type="button" class="custom-green-btn" data-bs-toggle="modal" data-bs-target="#paymentModal"><i class="fas fa-money-check"></i></i></button>
+                                        @if($jobOrder->status != "rejected"  && $jobOrder->status != "paid")
+                                        <button style="display: inline-block;" class="btn btn-sm btn-warning pay-jo" id="pay-jo" data-target="#paymentModal" data-jobOrder="{{ $jobOrder }}"><i class="fas fa-money-bill"></i></button>
+                                        @endif
+                                        
                                     </td>
                                 </tr>
                             @endforeach

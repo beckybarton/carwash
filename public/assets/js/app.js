@@ -15,15 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
         itemSelectText: '',
     });
 
-    $(function() {
-        $('#joborders-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: jobordersDataUrl, // use the variable here
-            columns: [
-                { data: 'id', name: 'id' }
-            ]
-        });
+    $(document).on('click', '.pay-jo', function() {
+        // var jobOrder = $(this).data('jobOrder');
+        var jobOrderString = $(this).attr('data-jobOrder');
+        var jobOrder = JSON.parse(jobOrderString);
+        $('.joid_payment').val(jobOrder.id);
+        $('.customername_payment').val(jobOrder.customer.name);
+        $('.payable_payment').val(jobOrder.vehicle_type.amount);
+        $('#paymentModal').modal('show');
+        console.log(jobOrder.vehicle_type.amount);
     });
     
     
