@@ -36,6 +36,19 @@ class CustomerController extends Controller
         return view('customers.index', compact('vehicleTypes', 'allcustomers','jobOrders', 'payablesPerCustomer' ,'customerNames', 'paymentsPerCustomer'));
     }
 
+    public function transactions($customer){
+        $transactions = JobOrder::with([
+            'user',
+            'customer',
+            'vehicle_type',
+        ])->where('customer_id', $customer)->get();
+
+        $totalPayable = JobOrder::where('customer_id', $customer)->sum('amount');
+        $totalPayment = Payment::where('customer_id', $customer)->sum('amount');
+
+        return response()->json(['transactions' => $transactions, 'totalPayable' => $totalPayable, 'totalPayment' => $totalPayment]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

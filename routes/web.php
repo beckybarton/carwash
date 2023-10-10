@@ -51,6 +51,8 @@ Route::post('/statusupdate/{id}', [JobOrderController::class, 'statusupdate'])->
 // CUSTOMERS
 // Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::resource('customers', CustomerController::class)->middleware('auth');
+Route::get('customer-transactions/{id}', [CustomerController::class, 'transactions'])->name('customer.transactions');
+
 
 
 // USER MANAGEMENT
