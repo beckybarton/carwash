@@ -29,13 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     $(document).on('click', '.customer-transactions', function() {
         var customerid = $(this).data('customer');
-        // $('.edit-id').val(vehicletype.id);
-        // $('.edit-name').val(vehicletype.name);
-        // $('.edit-amount').val(vehicletype.amount);
-        // // $('#editVehicleTypeForm').attr('action', '/vehicle-types/' + vehicletype.id);
-        // $('#customertransactionsModal').modal('show');
-
-        //  // Make an AJAX request to fetch data
          $.ajax({
             url: 'customer-transactions/' + customerid,  
             method: 'GET',
@@ -90,8 +83,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(error);
             }
         });
-        // console.log(customer);
     });
+
+    $(document).ready(function() {
+        // Add event listeners for input and select change
+        $('#searchInput, #statusFilter').on('keyup change', function() {
+            // Get search input value and selected filter value
+            var searchText = $('#searchInput').val().toLowerCase();
+            var statusFilter = $('#statusFilter').val();
+    
+            // Filter the table rows based on search input and status filter
+            $('#joborders-table tbody tr').each(function() {
+                var row = $(this);
+                var isMatch = false;
+    
+                // Iterate through each column in the row and check for a match
+                row.find('td').each(function() {
+                    var cellText = $(this).text().toLowerCase();
+                    // If the column text contains the search text and matches the selected status, set isMatch to true
+                    if (cellText.includes(searchText) && (statusFilter === '' || row.find('td:eq(6)').text().toLowerCase() === statusFilter)) {
+                        isMatch = true;
+                        return false; // Exit the loop if a match is found in this row
+                    }
+                });
+    
+                // Show/hide the row based on search and filter results
+                row.toggle(isMatch);
+            });
+        });
+    });
+    
 
 });
 

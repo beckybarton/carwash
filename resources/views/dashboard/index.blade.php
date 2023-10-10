@@ -24,6 +24,17 @@
                     </div>
                 @endif
                 <div class="table-responsive">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search by Customer Name">
+
+                    <select id="statusFilter" class="form-control">
+                        <option value="">All</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="completed">Completed</option>
+                        <option value="rejected">Rejected</option>
+                        <!-- Add more status options as needed -->
+                    </select>
+                    <p></p>
                     <table class="table table-striped table-bordered table-hover" id="joborders-table">
                         <thead class="thead-dark">
                             <tr>
