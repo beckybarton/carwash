@@ -44,7 +44,10 @@ class CustomerController extends Controller
             'user',
             'customer',
             'vehicle_type',
-        ])->where('customer_id', $customer)->get();
+             ])->where('customer_id', $customer)
+             ->where('status', '!=', 'rejected')
+             ->doesntHave('payment') 
+             ->get();
 
         $totalPayable = JobOrder::where('customer_id', $customer)
             ->where('status', '!=', 'rejected')
