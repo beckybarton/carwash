@@ -18,6 +18,7 @@ class JobOrder extends Model
         'status',
         'approver_id',
         'approved_date',
+        'amount',
     ];
 
     public function customer(){
@@ -38,8 +39,7 @@ class JobOrder extends Model
 
     public static function getTotalPayable($customerId){
         return self::where('customer_id', $customerId)
-               ->join('vehicle_types', 'job_orders.vehicle_type_id', '=', 'vehicle_types.id')
-               ->sum('vehicle_types.amount');
+               ->sum('amount');
     }
 
 }

@@ -18,7 +18,7 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container" style="margin:1%;">
         <!-- Sidebar & Content Area -->
         <div class="row">
             <!-- Sidebar -->

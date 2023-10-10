@@ -4,7 +4,7 @@
     @include('layouts.navbar')
     @include('payments.create')
 
-    <div class="container mt-5">
+    <div class="container" style="margin:1%;">
         
         <!-- Sidebar & Content Area -->
         <div class="row">
@@ -30,7 +30,7 @@
                                 <th>ID</th>
                                 <th>Customer</th>
                                 <th>Vehicle Type</th>
-                                <th>Rate</th>
+                                <th class="text-end">Rate</th>
                                 <th>Plate Number</th>
                                 <th>Time In</th>
                                 <th>Status</th>
@@ -43,7 +43,7 @@
                                     <td>{{ $jobOrder->id }}</td>
                                     <td>{{ ucwords($jobOrder->customer->name) }}</td>
                                     <td>{{ ucwords($jobOrder->vehicle_type->name) }}</td>
-                                    <td>{{ number_format($jobOrder->vehicle_type->amount,2) }}</td>
+                                    <td class="text-end">{{ number_format($jobOrder->amount,2) }}</td>
                                     <td>{{ strtoupper($jobOrder->plate_number) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($jobOrder->time_in)->format('M d, Y') }}</td>
                                     <td>{{ ucwords($jobOrder->status) }}</td>

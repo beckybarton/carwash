@@ -59,16 +59,16 @@ class JobOrderController extends Controller
             'time_in' => 'required|date',
         ]);
         $data['user_id'] = auth()->id();
+
+        // $vehicleType = VehicleType::find($request->vehicle_type_id);
+        $data['amount'] = VehicleType::Find($request->vehicle_type_id)->amount;
     
         if(JobOrder::create($data)){
             return redirect()->route('dashboard.index')->with('success', 'Job Order Created Successfully!');
-            // return view('dashboard.index');
-            // dd("su");
         }
         else{
             return back()->with('error', 'Job Order Not Created Successfully!');
         }
-        // return redirect()->route('job-orders.index')->with('status', 'Job Order Created Successfully!');
     }
 
     public function filter(Request $request){

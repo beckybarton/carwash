@@ -3,7 +3,7 @@
 <body>
     @include('layouts.navbar')
 
-    <div class="container mt-5">
+    <div class="container" style="margin:1%;">
         <div class="row">
             <!-- Sidebar -->
             @include('layouts.sidebar')

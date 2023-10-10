@@ -7,7 +7,7 @@
 @include('customers.create')
 @include('layouts.footer')
 @include('users.register')
-<div class="container mt-5">
+<div class="container" style="margin:1%;">
         
         <!-- Sidebar & Content Area -->
     <div class="row">
