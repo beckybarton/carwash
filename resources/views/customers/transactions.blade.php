@@ -5,7 +5,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Add Vehicle Type</h4>
+        <h4 class="modal-title">Transactions</h4>
         <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
       </div>
 
@@ -20,17 +20,19 @@
                   <th class="small">Type</th>
                   <th class="small">Plate Number</th>
                   <th class="text-end small">Amount</th>
-                  <th class="text-end small">Status</th>
+                  <th class="small">Status</th>
                 </tr>
               </thead>
               <tbody>
               </tbody>
             </table>
           </div>
-          <button type="button" class="btn btn-primary" >Download Billing Statement</button>
+          <!-- <button type="button" class="btn btn-primary" >Download Billing Statement</button> -->
+          
         </div>
-
+      
       <div class="modal-footer">
+        <div id="downloadbuttondiv"> </div>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
 

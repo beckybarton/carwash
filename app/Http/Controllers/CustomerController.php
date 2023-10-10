@@ -6,6 +6,9 @@ use App\Models\Customer;
 use App\Models\VehicleType;
 use App\Models\JobOrder;
 use App\Models\Payment;
+use PDF;
+use Spatie\Browsershot\Browsershot;
+
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -43,10 +46,33 @@ class CustomerController extends Controller
             'vehicle_type',
         ])->where('customer_id', $customer)->get();
 
-        $totalPayable = JobOrder::where('customer_id', $customer)->sum('amount');
+        $totalPayable = JobOrder::where('customer_id', $customer)
+            ->where('status', '!=', 'rejected')
+            ->sum('amount');
         $totalPayment = Payment::where('customer_id', $customer)->sum('amount');
 
         return response()->json(['transactions' => $transactions, 'totalPayable' => $totalPayable, 'totalPayment' => $totalPayment]);
+    }
+
+    public function unpaidtransactions($customer_id){
+        // Fetch data from the database (replace YourModel with your actual model)
+        $unpaidtransactions = JobOrder::with([
+            'user',
+            'customer',
+            'vehicle_type',
+        ])->where('customer_id', $customer_id)
+          ->doesntHave('payment') 
+          ->where('status', '!=', 'rejected')
+          ->get();
+
+        $totalPayable = $unpaidtransactions->sum('amount');
+
+        // dd($unpaidtransactions->first()->customer->name);
+
+        $pdf = PDF::loadView('customers.billing', ['unpaidtransactions' => $unpaidtransactions, 'totalPayable' => $totalPayable]);
+
+        // Download the PDF file
+        return $pdf->download('billing_statement.pdf');
     }
 
     /**

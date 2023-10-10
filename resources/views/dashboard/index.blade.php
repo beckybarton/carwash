@@ -40,7 +40,7 @@
                         <tbody>
                             @foreach($jobOrders as $jobOrder)
                                 <tr>
-                                    <td>{{ $jobOrder->id }}</td>
+                                    <td>{{ str_pad($jobOrder->id, 4, '0', STR_PAD_LEFT) }}</td>
                                     <td>{{ ucwords($jobOrder->customer->name) }}</td>
                                     <td>{{ ucwords($jobOrder->vehicle_type->name) }}</td>
                                     <td class="text-end">{{ number_format($jobOrder->amount,2) }}</td>
@@ -54,10 +54,9 @@
                                                 <button type="submit" class="custom-green-btn" name="action" value="approved"><i class="fas fa-check"></i></button>
                                                 <button type="submit" class="custom-red-btn" name="action" value="rejected"><i class="fas fa-times"></i> </button>
                                             @endif
-                                            @if($jobOrder->status === "approved")
+                                            @if($jobOrder->status === "approved" || $jobOrder->status === "paid")
                                                 <button type="submit" class="custom-green-btn" name="action" value="completed"><i class="fas fa-clipboard-check"></i> </button>
                                             @endif
-                                            
                                         </form>
                                         @if($jobOrder->status != "rejected"  && $jobOrder->status != "paid")
                                         <button style="display: inline-block;" class="btn btn-sm btn-warning pay-jo" id="pay-jo" data-target="#paymentModal" data-jobOrder="{{ $jobOrder }}"><i class="fas fa-money-bill"></i></button>

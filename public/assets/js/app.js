@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
             url: 'customer-transactions/' + customerid,  
             method: 'GET',
             success: function(response){
+                var downloadbuttondiv = $('#downloadbuttondiv');
+                downloadbuttondiv.empty();
                 var tableBody = $('#customertransactions tbody');
                 tableBody.empty()
                 $.each(response.transactions, function(index, transaction) {
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         day: 'numeric'
                     });
                     var row = $('<tr>');
-                    row.append($('<td class="small">').text(transaction.id));
+                    row.append($('<td class="small">').text(String(transaction.id).padStart(4, '0')));
                     row.append($('<td class="small">').text(formattedDate));
                     row.append($('<td class="small">').text(transaction.vehicle_type.name));
                     row.append($('<td class="small">').text(transaction.plate_number));
@@ -73,6 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 duerow.append($('<td class="small" colspan="4">').text("Remaining Due: "));
                 duerow.append($('<td class="small text-end" colspan="2">').text(parseFloat((response.totalPayable - response.totalPayment)).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})));
                 tableBody.append(duerow);
+
+                
+                var downloadButton = document.createElement('a');
+                var downloadUrl = '/download-billing-statement/' + customerid;
+                downloadButton.setAttribute('href', downloadUrl);
+                downloadButton.setAttribute('class', 'btn btn-primary');
+                downloadButton.textContent = 'Download Billing Statement';
+                downloadbuttondiv.append(downloadButton);
 
                 $('#customertransactionsModal').modal('show');
             },
