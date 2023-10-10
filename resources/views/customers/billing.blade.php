@@ -108,7 +108,7 @@
                             </tr>   
                         @endforeach
                         <tr>
-                            <td class="small text-left" colspan="3"><strong>Total Payable: </strong></td>
+                            <td class="small text-left" colspan="4"><strong>Total Payable: </strong></td>
                             <td class="text-end small"><strong>{{number_format($totalPayable,2)}}</strong></td>
                         </tr>
                     </tbody>
