@@ -34,7 +34,7 @@ class JobOrder extends Model
         return $this->belongsTo('App\Models\VehicleType');
     }
     public function payment(){
-        return $this->hasMany(Payment::class);
+        return $this->hasOne(Payment::class);
     }
 
     public static function getTotalPayable($customerId){

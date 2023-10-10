@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $('.joid_payment').val(jobOrder.id);
         $('.customername_payment').val(jobOrder.customer.name);
         $('.payable_payment').val(jobOrder.vehicle_type.amount);
+        $('.amount_payment').val(jobOrder.vehicle_type.amount);
         $('#paymentModal').modal('show');
         console.log(jobOrder.vehicle_type.amount);
     });

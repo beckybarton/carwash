@@ -15,6 +15,7 @@ class DashboardController extends Controller
             'user', 
             'customer',
             'vehicle_type',
+            'payment',
         ])->orderBy('created_at', 'desc')
           ->paginate(10);
         

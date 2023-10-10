@@ -69,7 +69,7 @@
                                                 <button type="submit" class="custom-green-btn" name="action" value="completed"><i class="fas fa-clipboard-check"></i> </button>
                                             @endif
                                         </form>
-                                        @if($jobOrder->status != "rejected"  && $jobOrder->status != "paid")
+                                        @if($jobOrder->status != "rejected" && $jobOrder->status != "paid" && !($jobOrder->payment))
                                         <button style="display: inline-block;" class="btn btn-sm btn-warning pay-jo" id="pay-jo" data-target="#paymentModal" data-jobOrder="{{ $jobOrder }}"><i class="fas fa-money-bill"></i></button>
                                         @endif
                                         
