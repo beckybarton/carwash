@@ -61,6 +61,6 @@
     @include('job_orders.create')
     @include('customers.create')
     @include('customers.transactions')
-
+    @include('users.changepassword')
     @include('layouts.footer')
 </body>

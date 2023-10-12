@@ -7,6 +7,7 @@
 @include('customers.create')
 @include('layouts.footer')
 @include('users.register')
+@include('users.changepassword')
 <div class="container" style="margin:1%;">
         
         <!-- Sidebar & Content Area -->

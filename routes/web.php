@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,14 +56,17 @@ Route::get('customer-transactions/{id}', [CustomerController::class, 'transactio
 Route::get('/download-billing-statement/{customer_id}', [CustomerController::class, 'unpaidtransactions']);
 
 
-
-
 // USER MANAGEMENT
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'registerSave'])->name('register.post');
+Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('auth');
+Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('password.reset')->middleware('auth');
+Route::get('/change-password', [UserController::class, 'showChangePasswordForm'])->name('change.password.form');
+Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
+
 
 // PAYMENT MANAGEMENT
 Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');

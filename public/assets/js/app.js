@@ -134,6 +134,39 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+    $(document).ready(function() {
+        $('#searchInputuser').on('keyup change', function() {
+            var searchText = $('#searchInputuser').val().toLowerCase();
+    
+            $('#users-table tbody tr').each(function() {
+                var row = $(this);
+                var isMatch = false;
+    
+                row.find('td').each(function() {
+                    var cellText = $(this).text().toLowerCase();
+                    if (cellText.includes(searchText)) {
+                        isMatch = true;
+                        return false; 
+                    }
+                });
+    
+                row.toggle(isMatch);
+            });
+        });
+    });
+
+    $(document).on('click', '.changepassword', function() {
+        // var jobOrder = $(this).data('jobOrder');
+        // var jobOrderString = $(this).attr('data-jobOrder');
+        // var jobOrder = JSON.parse(jobOrderString);
+        // $('.joid_payment').val(jobOrder.id);
+        // $('.customername_payment').val(jobOrder.customer.name);
+        // $('.payable_payment').val(jobOrder.vehicle_type.amount);
+        // $('.amount_payment').val(jobOrder.vehicle_type.amount);
+        $('#changepasswordModal').modal('show');
+        console.log("clicked");
+    });
     
 
 });

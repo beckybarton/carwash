@@ -3,6 +3,7 @@
 <body>
     @include('layouts.navbar')
     @include('payments.create')
+    @include('users.changepassword')
 
     <div class="container" style="margin:1%;">
         

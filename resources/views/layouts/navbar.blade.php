@@ -13,6 +13,10 @@
                     <button type="submit" class="nav-link">Logout</button>
                 </form>
                 </li>
+
+                <li>
+                <button class="nav-link changepassword" id="changepassword" data-target="#changepasswordModal">Change Password</button>
+                </li>
             </ul>
         </div>
     </div>
