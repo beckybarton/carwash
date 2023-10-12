@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 tableBody.append(paymentrow);
 
                 var duerow = $('<tr>');
-                duerow.append($('<td class="small" colspan="4">').text("Remaining Due: "));
-                duerow.append($('<td class="small text-end" colspan="2">').text(parseFloat((response.totalPayable - response.totalPayment)).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})));
+                duerow.append($('<td class="small text-danger font-weight-bold" colspan="4">').text("Remaining Due: "));
+                duerow.append($('<td class="small text-end text-danger font-weight-bold" colspan="2">').text(parseFloat((response.totalPayable - response.totalPayment)).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})));
                 tableBody.append(duerow);
 
                 
