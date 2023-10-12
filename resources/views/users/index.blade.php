@@ -25,7 +25,7 @@
                 @endif
                 <div class="table-responsive">
                     <input type="text" class="form-control" id="searchInputuser" placeholder="Search by Name">
-
+                    <p></p>
                     <select id="roleFilter" class="form-control">
                         <option value="">All</option>
                         <option value="approver">Approver</option>

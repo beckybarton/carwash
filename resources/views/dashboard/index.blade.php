@@ -26,7 +26,7 @@
                 @endif
                 <div class="table-responsive">
                     <input type="text" class="form-control" id="searchInput" placeholder="Search by Customer Name">
-
+                    <p></p>
                     <select id="statusFilter" class="form-control">
                         <option value="">All</option>
                         <option value="pending">Pending</option>
@@ -45,6 +45,7 @@
                                 <th class="text-end">Rate</th>
                                 <th>Plate Number</th>
                                 <th>Time In</th>
+                                <th>Payment Status</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -58,6 +59,7 @@
                                     <td class="text-end">{{ number_format($jobOrder->amount,2) }}</td>
                                     <td>{{ strtoupper($jobOrder->plate_number) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($jobOrder->time_in)->format('M d, Y') }}</td>
+                                    <td>{{ $jobOrder->payment && $jobOrder->payment->created_at ? 'Paid on ' . \Carbon\Carbon::parse($jobOrder->payment->created_at)->format('M d, Y') : '' }}</td>
                                     <td>{{ ucwords($jobOrder->status) }}</td>
                                     <td>
                                         <form style="display: inline-block;" action="{{ route('joborder.statusupdate', $jobOrder->id) }}" method="POST">
