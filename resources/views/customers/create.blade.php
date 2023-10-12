@@ -5,7 +5,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Add Vehicle Type</h4>
+        <h4 class="modal-title">Add Customer</h4>
         <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
       </div>
 
