@@ -65,7 +65,7 @@
                                                 <button type="submit" class="custom-green-btn" name="action" value="approved"><i class="fas fa-check"></i></button>
                                                 <button type="submit" class="custom-red-btn" name="action" value="rejected"><i class="fas fa-times"></i> </button>
                                             @endif
-                                            @if($jobOrder->status === "approved" || $jobOrder->status === "paid")
+                                            @if(($jobOrder->status === "approved" || $jobOrder->status === "paid"))
                                                 <button type="submit" class="custom-green-btn" name="action" value="completed"><i class="fas fa-clipboard-check"></i> </button>
                                             @endif
                                         </form>

@@ -5,7 +5,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Transactions</h4>
+        <h4 class="modal-title">Transactions of <span id="customername"> </span></h4>
         <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
       </div>
 

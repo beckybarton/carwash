@@ -36,6 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
             success: function(response){
                 var downloadbuttondiv = $('#downloadbuttondiv');
                 downloadbuttondiv.empty();
+
+                var customernamespan = document.getElementById('customername');
+
+                customernamespan.textContent = response.customername;
+                console.log(response.customername);
+
                 var tableBody = $('#customertransactions tbody');
                 tableBody.empty()
                 $.each(response.transactions, function(index, transaction) {
@@ -87,28 +93,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     $(document).ready(function() {
-        // Add event listeners for input and select change
         $('#searchInput, #statusFilter').on('keyup change', function() {
-            // Get search input value and selected filter value
             var searchText = $('#searchInput').val().toLowerCase();
             var statusFilter = $('#statusFilter').val();
     
-            // Filter the table rows based on search input and status filter
             $('#joborders-table tbody tr').each(function() {
                 var row = $(this);
                 var isMatch = false;
     
-                // Iterate through each column in the row and check for a match
                 row.find('td').each(function() {
                     var cellText = $(this).text().toLowerCase();
-                    // If the column text contains the search text and matches the selected status, set isMatch to true
                     if (cellText.includes(searchText) && (statusFilter === '' || row.find('td:eq(6)').text().toLowerCase() === statusFilter)) {
                         isMatch = true;
-                        return false; // Exit the loop if a match is found in this row
+                        return false; 
                     }
                 });
     
-                // Show/hide the row based on search and filter results
+                row.toggle(isMatch);
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('#searchInputcustomer').on('keyup change', function() {
+            var searchText = $('#searchInputcustomer').val().toLowerCase();
+    
+            $('#customers-table tbody tr').each(function() {
+                var row = $(this);
+                var isMatch = false;
+    
+                row.find('td').each(function() {
+                    var cellText = $(this).text().toLowerCase();
+                    if (cellText.includes(searchText)) {
+                        isMatch = true;
+                        return false; 
+                    }
+                });
+    
                 row.toggle(isMatch);
             });
         });

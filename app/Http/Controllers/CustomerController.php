@@ -49,12 +49,14 @@ class CustomerController extends Controller
              ->doesntHave('payment') 
              ->get();
 
+        $customername = Customer::find($customer);
+
         $totalPayable = JobOrder::where('customer_id', $customer)
             ->where('status', '!=', 'rejected')
             ->sum('amount');
         $totalPayment = Payment::where('customer_id', $customer)->sum('amount');
 
-        return response()->json(['transactions' => $transactions, 'totalPayable' => $totalPayable, 'totalPayment' => $totalPayment]);
+        return response()->json(['transactions' => $transactions, 'totalPayable' => $totalPayable, 'totalPayment' => $totalPayment, 'customername' => $customername->name]);
     }
 
     public function unpaidtransactions($customer_id){

@@ -21,7 +21,8 @@
                 @endif
 
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover">
+                    <input type="text" class="form-control" id="searchInputcustomer" placeholder="Search by Customer Name">
+                    <table class="table table-striped table-bordered table-hover"  id="customers-table">
                         <thead class="thead-dark">
                             <tr>
                                 <th>ID</th>
@@ -42,7 +43,6 @@
                                     <td class="text-end">{{ number_format($payablesPerCustomer[$customerName->id] - $paymentsPerCustomer[$customerName->id],2) }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-success customer-transactions" id="customer-transactions" data-target="#customertransactionsModal" data-customer="{{ $customerName->id }}">View</button>
-                                        <button class="btn btn-sm btn-warning view-payables" id="view-payables" data-target="#editVehicleTypeModal" data-vehicletype="{{ $customerName }}">Edit</button>
                                     </td>
                                 </tr>
                             @endforeach
