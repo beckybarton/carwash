@@ -50,7 +50,7 @@
                                 <tr>
                                     <td>{{ ucwords($user->id) }}</td>
                                     <td>{{ ucwords($user->first_name) }} {{ ucwords($user->last_name) }}</td>
-                                    <td>{{ ucwords($user->username) }}</td>
+                                    <td>{{ strtolower($user->username) }}</td>
                                     <td>{{ ucwords($user->role) }}</td>
                                     <td>
                                     <form action="{{ route('password.reset') }}" method="post">
