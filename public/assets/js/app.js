@@ -157,13 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     $(document).on('click', '.changepassword', function() {
-        // var jobOrder = $(this).data('jobOrder');
-        // var jobOrderString = $(this).attr('data-jobOrder');
-        // var jobOrder = JSON.parse(jobOrderString);
-        // $('.joid_payment').val(jobOrder.id);
-        // $('.customername_payment').val(jobOrder.customer.name);
-        // $('.payable_payment').val(jobOrder.vehicle_type.amount);
-        // $('.amount_payment').val(jobOrder.vehicle_type.amount);
         $('#changepasswordModal').modal('show');
         console.log("clicked");
     });
