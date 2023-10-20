@@ -23,8 +23,7 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         // Validate the form data
         $request->validate([
             'username' => 'required',
